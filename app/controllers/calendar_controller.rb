@@ -1,7 +1,9 @@
 class CalendarController < ApplicationController
   
   def home
-  
+    if params[:message] == "invalid_credentials"
+      flash.now[:notice] = 'Invalid Credentials to Access Site' 
+    end
   end
 
   def vacations

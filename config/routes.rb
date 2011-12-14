@@ -2,6 +2,7 @@ Gretchen::Application.routes.draw do
   
   root :to  => 'calendar#home'
 
+  match "/auth/failure" => "calendar#home"
   match "/calendar" => "calendar#vacations"
   match "/auth/google_oauth2/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
