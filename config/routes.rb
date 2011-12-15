@@ -1,5 +1,7 @@
 Gretchen::Application.routes.draw do
-  
+
+  resources :users
+
   root :to  => 'calendar#home'
 
   match "/auth/failure" => "calendar#home"
