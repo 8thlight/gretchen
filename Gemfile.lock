@@ -175,7 +175,7 @@ DEPENDENCIES
   capybara
   cucumber-rails
   database_cleaner
-  jquery-rails (>= 1.0.12)
+  jquery-rails
   launchy
   omniauth
   omniauth-google-oauth2!
