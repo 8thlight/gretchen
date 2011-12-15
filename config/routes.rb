@@ -1,9 +1,10 @@
 Gretchen::Application.routes.draw do
 
-  resources :users
+  resources :users do
+    post "activate" => "users#activate"
+  end
 
   root :to  => 'calendar#home'
-
   match "/auth/failure" => "calendar#home"
   match "/calendar" => "calendar#vacations"
   match "/auth/google_oauth2/callback" => "sessions#create"

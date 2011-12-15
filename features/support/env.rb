@@ -37,6 +37,13 @@ rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
 
+class ApplicationController < ActionController::Base
+  prepend_before_filter :stub_current_user
+  def stub_current_user
+    session[:user_id] = cookies[:stub_user_id] if cookies[:stub_user_id]
+  end
+end
+
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
 # See the DatabaseCleaner documentation for details. Example:
 #

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   email_regex = /\A[\w+\-.]+@(8thlight.com)/i
 
+
   validates :name,  :presence => true,
                     :length   => { :maximum => 50 }
 
@@ -17,5 +18,4 @@ class User < ActiveRecord::Base
       :name => auth["info"]["name"],
       :email => auth["info"]["email"])
   end
-
 end

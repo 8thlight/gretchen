@@ -6,14 +6,14 @@ To be able to set my time off
 Scenario: 8th Lighter can log in
 Given I am a user with a valid 8th Light email account
 When I go to the root page
-And when I click "Sign in with Google"
+And I click "Sign in with Google"
 Then I should be on the calendar page
 
 @omniauth_test
 Scenario: non-8thlighter
 Given I am a user with a gmail account
 When I go to the root page
-And when I click "Sign in with Google"
+And I click "Sign in with Google"
 Then I should see "You must be an 8th Light Craftsman to see this project"
 
 Scenario: Routing Authentication

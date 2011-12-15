@@ -1,0 +1,60 @@
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Vacation Days</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <% if !user.deleted %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.vacationdays %></td>
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <% if current_user.admin? %>
+        <td> <%= button_to "Delete #{user.name}", user, :method => :delete, :confirm => "Are you sure?", :html => {:title => "Delete #{user.name}"} %> </td>
+      <% end %>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+
+<% if current_user.admin? %>
+<h2>Archived Users</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Vacation Days</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <% if user.deleted %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.vacationdays %></td>
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= button_to "Activate", user_activate_path(user.id), :method => :post, :confirm => "Are you sure?",
+         :title => "Activate #{user.name}" %> </td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+<% end %>
+
+<br />
+
+<% if current_user.admin? %>
+  <%= link_to 'Create a New User', new_user_path %>
+<% end %>
