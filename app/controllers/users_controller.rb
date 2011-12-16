@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @vacation = Vacation.new
+    @dates = current_user.vacations
   end
 
   def new

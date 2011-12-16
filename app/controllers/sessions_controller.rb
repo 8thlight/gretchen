@@ -5,10 +5,10 @@ class SessionsController < ApplicationController
     update = {:uid => auth["uid"], :provider => auth["provider"] }
       if !user.nil? && user.email =="san.y4ku@gmail.com"
         session[:user_id] = user.id
-        redirect_to '/calendar'
+        redirect_to '/users'
       elsif !user.nil? && user.update_attributes(update) && !user.deleted?
         session[:user_id] = user.id
-        redirect_to '/calendar'
+        redirect_to "/users/#{user.id}"
       else
         redirect_to root_url, :notice => "You must be an 8th Light Craftsman to see this project"
       end

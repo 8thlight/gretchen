@@ -3,3 +3,31 @@
 <br />
 
 <p> You have <%= @user.vacationdays %> vacation days! </p>
+<h3>Current Vacation Periods</h3>
+<% if !@dates.empty?  %>
+  <% @dates.each do |date| %>
+    <tr>
+      <td><%= date.start_date.strftime("%m-%d-%Y") %></td>
+      <td><%= date.end_date.strftime("%m-%d-%Y") %></td>
+      <td><%= button_to "Delete", date, :method => :delete, :confirm => "Are you sure?" %> </td>
+    </tr>
+  <% end %>
+<% end %>
+
+<h3>New Vacation Period</h3>
+<%= form_for @vacation do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.text_field :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.text_field :end_date %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
+

@@ -7,7 +7,7 @@ When /I go to the (\w+)/ do |path|
   end
 end
 
-And /I click "(.*?)"/ do |click|
+When /I click "(.*?)"/ do |click|
   click_link "#{click}"
 end
 
@@ -37,6 +37,9 @@ Then /I should see "(.*?)"/ do |message|
 end
 
 Then /I should be on the (\w+)/ do |path|
+  if path == "users"
+    path += "/#{@user.id}"
+  end
   current_path = URI.parse(current_url).path 
   current_path.should == "/#{path.downcase}"
 end

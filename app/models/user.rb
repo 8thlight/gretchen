@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :vacationdays, :uid, :provider
 
+  has_many :vacations, :dependent => :destroy
+
   email_regex = /\A[\w+\-.]+@(8thlight.com)/i
 
 
