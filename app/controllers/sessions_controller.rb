@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
+    if auth 
+      puts auth
+    else 
+      puts "SOMTHING JUST WENT TERRIBLY WRONG!"
+    end
     user = User.find_by_name_and_email(auth["info"]["name"], auth["info"]["email"]) #|| User.create_with_omniauth(auth)
     update = {:uid => auth["uid"], :provider => auth["provider"] }
       if !user.nil? && user.email =="san.y4ku@gmail.com"
