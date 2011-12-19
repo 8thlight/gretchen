@@ -18,7 +18,8 @@ Given /I am a user with a gmail account/ do
   OmniAuth.config.mock_auth[:google_oauth2] = {
     "provider"=>"google",
     "uid"=>"http://xxxx.com/openid?id=118181138998978630963",
-    "info"=>{"email"=>"test@not_8thlight.com", "first_name"=>"Test", "last_name"=>"User", "name"=>"Test User"}
+    "info"=>{"email"=>"test@not_8thlight.com", "first_name"=>"Test", "last_name"=>"User", "name"=>"Test User"},
+    "credentials"=>{"token"=>"tookkeeeennnnn"}
   }
 end
 
@@ -27,8 +28,8 @@ Given /I am a user with a valid 8th Light email account/ do
   OmniAuth.config.mock_auth[:google_oauth2] = {
     "provider"=>"google",
     "uid"=>"http://xxxx.com/openid?id=118181138998978630963",
-    "info"=>{"email"=>"test@8thlight.com", "first_name"=>"Test", "last_name"=>"User", "name"=>"Test User"}
-
+    "info"=>{"email"=>"test@8thlight.com", "first_name"=>"Test", "last_name"=>"User", "name"=>"Test User"},
+    "credentials"=>{"token"=>"tookkeeeennnnn"}
   }
 end
 

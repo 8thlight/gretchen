@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :name, :email, :vacationdays, :uid, :provider
+  attr_accessible :name, :email, :vacationdays, :uid, :provider, :token
 
   has_many :vacations, :dependent => :destroy
 

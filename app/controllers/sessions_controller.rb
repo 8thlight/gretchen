@@ -7,8 +7,10 @@ class SessionsController < ApplicationController
       puts "SOMTHING JUST WENT TERRIBLY WRONG!"
     end
     user = User.find_by_name_and_email(auth["info"]["name"], auth["info"]["email"]) #|| User.create_with_omniauth(auth)
-    update = {:uid => auth["uid"], :provider => auth["provider"] }
+    update = {:uid => auth["uid"], :provider => auth["provider"], :token => auth["credentials"]["token"] }
       if !user.nil? && user.email =="san.y4ku@gmail.com"
+        puts user[:token] = auth['credentials']['token']
+        user.save(:validate => false)
         session[:user_id] = user.id
         redirect_to '/users'
       elsif !user.nil? && user.update_attributes(update) && !user.deleted?

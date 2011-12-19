@@ -6,7 +6,9 @@ Given /I am logged in as an admin/ do
     OmniAuth.config.mock_auth[:google_oauth2] = {
     "provider"=>"google",
     "uid"=>"http://xxxx.com/openid?id=118181138998978630963",
-    "info"=>{"email"=>"admin@8thlight.com", "first_name"=>"admin", "last_name"=>"", "name"=>"admin"}
+    "info"=>{"email"=>"admin@8thlight.com", "first_name"=>"admin", "last_name"=>"", "name"=>"admin"},
+    "credentials"=>{"token"=>"tookkeeeennnnn"}
+
   }
   click_link "Sign in with Google"
 end
