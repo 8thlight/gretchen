@@ -13,6 +13,16 @@
     <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
   <% end%>
 
+  <% if !current_user.nil? %>
+  <%= link_to "Calendar", "/calendar" %>
+
+  <%= link_to "Choose Vacation Period", "/users/#{current_user.id}" %>
+  <% end %>
+
+  <% if !current_user.nil? && current_user.admin? %>
+    <%= link_to "Administration", "/users" %>
+  <% end %>
+
   <% flash.each do |key, value| %>
     <div class="<%= key %>"><%= value %></div>
   <% end %>

@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:success] = "User Created!"
-      redirect_to @user
+      redirect_to "/users"
     else
       render 'new'
     end
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id]) if params[:id]
       if !current_user
         render '/'
-      elsif current_user.admin? == false && current_user.id != @user.id
+      elsif current_user.admin? == false && current_user != @user
         redirect_to current_user, :notice => "Unauthorized Access"
       end
     end

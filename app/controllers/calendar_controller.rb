@@ -11,5 +11,4 @@ class CalendarController < ApplicationController
       redirect_to root_url, :notice => "You must log in to see this page"
     end 
   end
-
 end

@@ -7,7 +7,7 @@ Scenario: 8th Lighter can log in
 Given I am a user with a valid 8th Light email account
 When I go to the root page
 And I click "Sign in with Google"
-Then I should be on the users page
+Then I should be on the calendar page
 
 @omniauth_test
 Scenario: non-8thlighter

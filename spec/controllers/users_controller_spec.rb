@@ -124,7 +124,7 @@ describe UsersController do
     end
   end
 
-  describe "GET 'New'" do
+  describe "GET 'Create'" do
     before(:each) do
       @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2")
       @boss.toggle!(:admin)
@@ -139,10 +139,10 @@ describe UsersController do
       test.email.should == "n00b@8thlight.com"
     end
 
-    it "should redirect to new user page" do
+    it " if admin then should to new user page" do
       put :create, :user => @attr
       test = User.find_by_name("New Guy")
-      response.should redirect_to(user_path(test))
+      response.should redirect_to('/users')
     end
 
     it "should render new if failed" do
@@ -154,8 +154,50 @@ describe UsersController do
   end
 
   describe "destroy" do
+    before(:each) do
+      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2")
+      @boss.toggle!(:admin)
+      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12345", :provider => "google_oauth2")
+    end
+
+    it "should allow admin to logically destroy users" do
+      session[:user_id] = @boss.id
+      delete :destroy, :id => @notboss
+      User.find(@notboss.id).deleted.should == true
+    end
+
+    it "should not allow a non-admin to logically destroy users" do
+      session[:user_id] = @notboss.id
+      delete :destroy, :id => @boss
+      User.find(@boss.id).deleted.should == nil
+    end
 
   end
+
+  describe "activate" do
+    before(:each) do
+      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2")
+      @boss.toggle!(:admin)
+      @boss.toggle!(:deleted)
+      @boss.toggle!(:deleted)
+      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12345", :provider => "google_oauth2")
+      @notboss.toggle!(:deleted)
+    end
+
+    it "should allow admin to logically activate users" do
+      session[:user_id] = @boss.id
+      post "activate", :user_id => @notboss
+      User.find(@notboss.id).deleted.should == false
+    end
+
+    it "should not allow a non-admin to logically activate users" do
+      session[:user_id] = @notboss.id
+      post "activate", :user_id => @boss
+      User.find(@boss.id).deleted.should == false
+    end
+
+  end
+
 
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111219151728) do
+ActiveRecord::Schema.define(:version => 20111219191255) do
 
   create_table "users", :force => true do |t|
     t.string   "provider"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20111219151728) do
     t.boolean  "admin"
     t.boolean  "deleted"
     t.string   "token"
+    t.string   "refresh_token"
   end
 
   create_table "vacations", :force => true do |t|

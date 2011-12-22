@@ -1,7 +1,7 @@
 Gretchen::Application.routes.draw do
 
   resources :users do
-    post "activate" => "users#activate"
+     post 'activate' => 'users#activate'
   end
   resources :vacations, :only => [:create, :destroy]
 

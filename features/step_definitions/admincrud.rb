@@ -46,7 +46,7 @@ Then /^the edit should persist in the database$/ do
 end
 
 When /^I click to delete a craftsman entry$/ do
-  click_button("Delete george")
+  find_button("#{User.last.name}").click
 end
 
 And /^I confirm the delete$/ do
@@ -60,8 +60,7 @@ Then /^the record should still persist in the database$/ do
 end
 
 Then /should be logically deleted/ do
-  user = User.find_by_name("george")
-  user.deleted.should == true
+  User.last.deleted.should == true
 end
 
 Then /^show me the page$/ do
