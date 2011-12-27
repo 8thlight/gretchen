@@ -1,7 +1,26 @@
+<br/>
+<iframe src="http://www.google.com/calendar/embed?src=8thlight.com_4uqqu52baa6k0qeb0dp3gni138%40group.calendar.google.com&ctz=America/Chicago" style="border: 0" width="800" height="600" frameborder="0" scrolling="no" name="8th Light Time Off" id="google"></iframe>
 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Vacation Days</th>
+    <th>Vacation Days Used</th>
+    <th>Vacation Days Left</th>
+  </tr>
+  <% if current_user.admin? %>
+    <% @users.each do |user| %>
+      <% if !user.deleted %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.vacationdays %></td>
+          <td><%= user.days_used %></td>
+          <td><%= user.vacationdays - user.days_used %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>
 
-<br />
-<br />
-<br />
-
-<iframe src="http://www.google.com/calendar/embed?src=8thlight.com_4uqqu52baa6k0qeb0dp3gni138%40group.calendar.google.com&ctz=America/Chicago" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
