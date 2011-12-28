@@ -11,3 +11,6 @@ Feature: Whenever a vacation time is created
     And I press "Submit"
     Then I should recieve e-mail confirmation
 
+  @omniauth_test
+  Scenario: A reminder e-mail is sent to the User
+

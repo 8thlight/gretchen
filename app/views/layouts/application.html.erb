@@ -16,7 +16,7 @@
   <% if !current_user.nil? %>
   <%= link_to "Calendar", "/calendar" %>
 
-  <%= link_to "Choose Vacation Period", "/users/#{current_user.id}" %>
+  <%= link_to "Vacation Time", "/users/#{current_user.id}" %>
   <% end %>
 
   <% if !current_user.nil? && current_user.admin? %>

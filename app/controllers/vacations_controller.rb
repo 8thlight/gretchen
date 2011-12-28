@@ -17,6 +17,17 @@ class VacationsController < ApplicationController
     redirect_to "/users/#{current_user.id}"
   end
 
+  def remind(current_time)
+    users = User.all
+    users.each do |user|
+      user.vacations.each do |vacation|
+        if (current_time - vacation.start_date).to_int == 7
+          VacationMailer.vacation_reminder(user).deliver
+        end
+      end
+    end
+  end
+
   def google_com(user)
     if(ENV['RAILS_ENV'] == 'test')
       GoogleMock.new(user, ENV['TEST_KEY'], ENV['TEST_SECRET'])

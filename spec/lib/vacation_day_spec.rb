@@ -60,4 +60,5 @@ describe VacationDay do
    ['vacation@8thlight.com'].should == email.to
    email.subject.should == 'New Vacation'
   end
+
 end
