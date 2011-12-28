@@ -5,7 +5,7 @@ I want to enter a vacation I am taking in advance
 @omniauth_test
 Scenario: I want to enter a vacation day
     Given I am a craftsman logged in as "John Lennon"
-    And I click "Choose Vacation Period"
+    And I click "Vacation Time"
     When I fill in "Start date" with "11/11/2012"
     And I fill in "End date" with "11/11/2012"
     When I press "Submit"
