@@ -44,8 +44,8 @@ Then /I should be on the (\w+)/ do |path|
   current_path = URI.parse(current_url).path 
   current_path.should == "/#{path.downcase}"
 end
+
 Given /^I am a craftsman named "([^"]*)"$/ do |name|
  @user = User.create!(:name => "#{name}", :email => "test@8thlight.com", :vacationdays => 1)
 end
-
 

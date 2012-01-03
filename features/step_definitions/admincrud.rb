@@ -21,13 +21,13 @@ And /I create a new craftsman with name, email, and number of vacation days/ do
 end
 
 And /there are users to edit/ do
-  @admin = User.create!(:name => "bob", :email => "bob@8thlight.com", :vacationdays => 1)
-  @admin = User.create!(:name => "george", :email => "georde@8thlight.com", :vacationdays => 5)
-  @admin = User.create!(:name => "jill", :email => "jill@8thlight.com", :vacationdays => 6)
+  @user1 = User.create!(:name => "bob", :email => "bob@8thlight.com", :vacationdays => 1)
+  @user2 = User.create!(:name => "george", :email => "georde@8thlight.com", :vacationdays => 5)
+  @user3 = User.create!(:name => "jill", :email => "jill@8thlight.com", :vacationdays => 6)
 end
 
 When /I click to edit a specific craftsman's vacation days/ do
-  visit "/users/1/edit"
+  visit "/users/#{@user1.id}/edit"
 end
 
 
@@ -41,7 +41,7 @@ Then /^it should persist in the database$/ do
 end
 
 Then /^the edit should persist in the database$/ do
-  user = User.find_by_id(1)
+  user = User.find_by_id(@user1)
   user.vacationdays.should == 20
 end
 
