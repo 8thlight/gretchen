@@ -34,6 +34,6 @@ Feature: As an admin
     Given I am logged in as an admin
     And there are users to edit
     When I go to the calendar page
-    Then it should display "Vacation Days Left"
-    And it should display "Vacation Days"
+    Then it should display "Vacation Days Remaining"
+    And it should display "Max Vacation Days"
     And it should display "Vacation Days Used"

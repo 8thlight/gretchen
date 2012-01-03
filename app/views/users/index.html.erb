@@ -42,7 +42,7 @@
     <tr>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
-      <td><%= user.vacationdays - user.days_used %></td>
+      <td><%= user.vacationdays %></td>
       <td><%= link_to 'Show', user %></td>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td><%= button_to "Activate", user_activate_path(user.id), :method => :post, :confirm => "Are you sure?",

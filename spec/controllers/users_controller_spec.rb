@@ -5,9 +5,9 @@ describe UsersController do
 
   describe "GET 'Index'" do
     before do
-      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "12345", :provider => "google_oauth2")
+      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "12345", :provider => "google_oauth2", :vacationdays => 15)
       @boss.toggle!(:admin)
-      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "123456", :provider => "google_oauth2")
+      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "123456", :provider => "google_oauth2", :vacationdays => 15)
     end
 
     it "should be successful if admin" do
@@ -26,10 +26,10 @@ describe UsersController do
 
   describe "GET 'Show'" do
     before(:each) do
-      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2")
+      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2", :vacationdays => 15)
       @boss.toggle!(:admin)
-      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12345", :provider => "google_oauth2")
-      @malicious = User.create!(:name => "Evil Hacker", :email => "stealinyourvacation@8thlight.com", :uid => "15", :provider => "google_oauth2")
+      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12345", :provider => "google_oauth2", :vacationdays => 15)
+      @malicious = User.create!(:name => "Evil Hacker", :email => "stealinyourvacation@8thlight.com", :uid => "15", :provider => "google_oauth2", :vacationdays => 15)
     end
 
     it "should be successful if admin" do
@@ -54,10 +54,10 @@ describe UsersController do
 
   describe "GET 'Edit'" do
     before do
-      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2")
+      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2", :vacationdays => 15)
       @boss.toggle!(:admin)
-      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12346", :provider => "google_oauth2")
-      @malicious = User.create!(:name => "Evil Hacker", :email => "stealinyourvacation@8thlight.com", :uid => "1256", :provider => "google_oauth2")
+      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12346", :provider => "google_oauth2", :vacationdays => 15)
+      @malicious = User.create!(:name => "Evil Hacker", :email => "stealinyourvacation@8thlight.com", :uid => "1256", :provider => "google_oauth2", :vacationdays => 15)
     end
 
     it "should be successful if admin" do
@@ -83,7 +83,7 @@ describe UsersController do
   describe "PUT 'update'" do
 
     before(:each) do
-      @user = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12346", :provider => "google_oauth2")
+      @user = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12346", :provider => "google_oauth2", :vacationdays => 15)
       session[:user_id] = @user.id
     end
 
@@ -126,7 +126,7 @@ describe UsersController do
 
   describe "GET 'Create'" do
     before(:each) do
-      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2")
+      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2", :vacationdays => 15)
       @boss.toggle!(:admin)
       @newguy = User.new
       @attr = {:name => "New Guy", :email => "n00b@8thlight.com", :vacationdays => 10 }
@@ -155,9 +155,9 @@ describe UsersController do
 
   describe "destroy" do
     before(:each) do
-      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2")
+      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2", :vacationdays => 15)
       @boss.toggle!(:admin)
-      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12345", :provider => "google_oauth2")
+      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12345", :provider => "google_oauth2", :vacationdays => 15)
     end
 
     it "should allow admin to logically destroy users" do
@@ -176,11 +176,11 @@ describe UsersController do
 
   describe "activate" do
     before(:each) do
-      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2")
+      @boss = User.create!(:name => "The Boss", :email => "theboss@8thlight.com", :uid => "123456", :provider => "google_oauth2", :vacationdays => 15)
       @boss.toggle!(:admin)
       @boss.toggle!(:deleted)
       @boss.toggle!(:deleted)
-      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12345", :provider => "google_oauth2")
+      @notboss = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :uid => "12345", :provider => "google_oauth2", :vacationdays => 15)
       @notboss.toggle!(:deleted)
     end
 

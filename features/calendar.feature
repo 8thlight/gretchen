@@ -8,6 +8,5 @@ Scenario: Can see 8th light calednar on Front Page
     When I go to the root page
     And I click "Sign in with Google"
     When I go to the calendar page
-    Then show me the page
     Then it should contain the "8th Light Time Off" google calendar
 
