@@ -223,6 +223,7 @@ DEPENDENCIES
   jasmine
   jquery-rails
   launchy
+  mail
   omniauth
   omniauth-google-oauth2!
   pg

@@ -4,7 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th>Vacation Days</th>
+    <th>Vacation Days Remaining</th>
     <th></th>
     <th></th>
   </tr>
@@ -14,7 +14,7 @@
     <tr>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
-      <td><%= user.vacationdays %></td>
+      <td><%= user.vacationdays - user.days_used %></td>
       <td><%= link_to 'Show', user %></td>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <% if current_user.admin? %>
@@ -32,7 +32,7 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th>Vacation Days</th>
+    <th>Vacation Days Remaining</th>
     <th></th>
     <th></th>
   </tr>
@@ -42,7 +42,7 @@
     <tr>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
-      <td><%= user.vacationdays %></td>
+      <td><%= user.vacationdays - user.days_used %></td>
       <td><%= link_to 'Show', user %></td>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td><%= button_to "Activate", user_activate_path(user.id), :method => :post, :confirm => "Are you sure?",

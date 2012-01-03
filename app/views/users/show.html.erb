@@ -2,8 +2,8 @@
 
 <br />
 
-<p> You have <%= @user.vacationdays %> vacation days! </p>
-<h3>Current Vacation Periods</h3>
+<p> You have <%= @user.vacationdays %> vacation days remaining! </p>
+<h3>Selected Vacation Periods</h3>
 <% if !@dates.empty?  %>
   <% @dates.each do |date| %>
     <tr>

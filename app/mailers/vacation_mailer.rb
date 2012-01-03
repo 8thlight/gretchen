@@ -3,19 +3,21 @@ class VacationMailer < ActionMailer::Base
   default to: "vacation@8thlight.com"
 
   def vacation_email(user)
+    @from = 'gretchen@8thlight.com'
     @user = user
     @url = edit_user_path(@user)
     @start = @user.vacations.last.start_date
     @end = @user.vacations.last.end_date
-    mail(:from => 'gretchen@8thlight.com', :cc => @user.email, :subject => 'New Vacation')
+    mail(:from => @from, :cc => @user.email, :subject => 'New Vacation')
   end
 
   def vacation_reminder(user)
+    @from = 'gretchen@8thlight.com'
     @user = user
     @url = edit_user_path(@user)
     @start = @user.vacations.last.start_date
     @end = @user.vacations.last.end_date
-    mail(:from => 'gretchen@8thlight.com', :cc => @user.email, :subject => 'Vacation Reminder', :template_name => 'vacation_reminder')
+    mail(:from => @from, :cc => @user.email, :subject => 'Vacation Reminder', :template_name => 'vacation_reminder')
   end
 
   def remind(current_time)
