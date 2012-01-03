@@ -7,7 +7,7 @@ class VacationMailer < ActionMailer::Base
     @url = edit_user_path(@user)
     @start = @user.vacations.last.start_date
     @end = @user.vacations.last.end_date
-    mail(:cc => @user.email, :subject => 'New Vacation')
+    mail(:from => 'gretchen@8thlight.com', :cc => @user.email, :subject => 'New Vacation')
   end
 
   def vacation_reminder(user)
@@ -15,7 +15,7 @@ class VacationMailer < ActionMailer::Base
     @url = edit_user_path(@user)
     @start = @user.vacations.last.start_date
     @end = @user.vacations.last.end_date
-    mail(:cc => @user.email, :subject => 'Vacation Reminder', :template_name => 'vacation_reminder')
+    mail(:from => 'gretchen@8thlight.com', :cc => @user.email, :subject => 'Vacation Reminder', :template_name => 'vacation_reminder')
   end
 
   def remind(current_time)
