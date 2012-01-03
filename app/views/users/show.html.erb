@@ -2,7 +2,7 @@
 
 <br />
 
-<p> You have <%= @user.vacationdays %> vacation days remaining! </p>
+<p> You have <%= @user.vacationdays - @user.days_used %> vacation days remaining! </p>
 <h3>Selected Vacation Periods</h3>
 <% if !@dates.empty?  %>
   <% @dates.each do |date| %>
