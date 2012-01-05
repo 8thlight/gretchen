@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   before_filter :check_user, :except => [:index, :new, :create]
 
   def index
-    if current_user.admin? == false
-      redirect_to current_user, :notice => "Unauthorized Access"
+    if current_user.nil? || current_user.admin? == false
+      redirect_to '/', :notice => "Unauthorized Access"
     end
     @users = User.all
   end
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
 
     def check_user
       @user = User.find(params[:id]) if params[:id]
-      if !current_user
+      if current_user.nil? || !current_user
         render '/'
       elsif current_user.admin? == false && current_user != @user
         redirect_to current_user, :notice => "Unauthorized Access"
