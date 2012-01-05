@@ -19,7 +19,7 @@ Feature: As an admin
     And I update any name, email, and number of vacation days
     Then the edit should persist in the database
 
-@omniauth_test
+  @omniauth_test
   Scenario: Delete a craftsman
     Given I am logged in as an admin
     And there are users to edit

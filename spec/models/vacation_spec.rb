@@ -4,7 +4,7 @@ describe Vacation do
 
   before(:each) do
     @user = User.create!(:name => "New Guy", :email => "n00b@8thlight.com", :vacationdays => 10)
-    @attr = {:start_date => "01/02/2011", :end_date => "01/02/2011"}
+    @attr = {:start_date => "01/02/2011", :end_date => "01/02/2011", :google_id => "abunchof12384andletters"}
   end
 
   it "should create a new instance given valid attributes" do

@@ -11,6 +11,8 @@ class UsersController < ApplicationController
 
   def show
     @vacation = Vacation.new
+    sync = VacationSync.new(current_user, google_com(current_user))
+    sync.check_dates
     @dates = current_user.vacations
   end
 

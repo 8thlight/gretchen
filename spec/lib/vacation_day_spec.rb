@@ -16,10 +16,10 @@ describe VacationDay do
     date.google_cal.should == @google_mock
   end
 
-  it "should correctly parse dates in vacation" do
-    date = VacationDay.new(@test, @vacation, @google_mock)
-    date.dates[0].should == "2011-12-22"
-    date.dates[1].should == "2011-12-25"
+  it "should correctly parse dates in vacation and add 1 for google" do
+    date = VacationDay.new(@test, @vacation, @google_mock).parse_dates
+    date[0].should == "2011-12-22"
+    date[1].should == "2011-12-26"
   end
 
   it "should save vacation successfully" do
@@ -40,7 +40,7 @@ describe VacationDay do
     date.save.should == false
   end
 
-  it "should subtract user's vacations days correctly" do
+  it "should subtract user's vacations days correctly and add 1 for google" do
     date = VacationDay.new(@test, @vacation, @google_mock)
     ed = @vacation.end_date
     sd = @vacation.start_date
@@ -59,6 +59,30 @@ describe VacationDay do
    [@test.email].should == email.cc
    ['vacation@8thlight.com'].should == email.to
    email.subject.should == 'New Vacation'
+  end
+
+  it "should update vacation event google Id on successful creation" do
+    date = VacationDay.new(@test, @vacation, @google_mock)
+    date.save
+    @test.vacations.last.google_id.should == "abunchof123andletters"
+  end
+
+  it "should delete a vacation" do
+    date = VacationDay.new(@test, @vacation, @google_mock)
+    date.save
+    vacation = @test.vacations.last
+    count = @test.vacations.count
+    VacationDay.new(@test, vacation, @google_mock).delete_vacation
+    @test.vacations.count.should == (count-1)
+  end
+
+  it "should update vacation days after delete" do
+    date = VacationDay.new(@test, @vacation, @google_mock)
+    date.save
+    vacation = @test.vacations.last
+    length = (vacation.end_date - vacation.start_date).to_i
+    VacationDay.new(@test, vacation, @google_mock).delete_vacation
+    @test.days_used.should == 0
   end
 
 end

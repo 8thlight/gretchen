@@ -3,7 +3,7 @@ require "spec_helper"
 describe VacationMailer do
   before(:each) do
     @user = User.create!(:name => "Not The Boss", :email => "nottheboss@8thlight.com", :vacationdays => 10)
-    @user.vacations.new(:start_date => '25/12/2011', :end_date => '27/12/2011').save
+    @user.vacations.new(:start_date => '25/12/2011', :end_date => '27/12/2011', :google_id => "abunchof12384andletters").save
   end
 
   it "should send mail to the user" do
@@ -46,7 +46,7 @@ describe VacationMailer do
   it "send email within 7 days of start date" do
     date = Time.now.to_date
     start_date = date + 7
-    @attr = { :start_date => "#{start_date.strftime("%d/%m/%Y")}", :end_date => "27/12/2020"}
+    @attr = { :start_date => "#{start_date.strftime("%d/%m/%Y")}", :end_date => "27/12/2020", :google_id => "abunchof12384andletters"}
     @user.vacations.new(@attr).save
     VacationMailer.remind(date)
     ActionMailer::Base.deliveries.should_not be_empty

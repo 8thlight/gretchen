@@ -1,0 +1,27 @@
+<% if current_user.admin? %>
+<h2>Archived Users</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Vacation Days Remaining</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <% if user.deleted %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.vacationdays %></td>
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= button_to "Activate", user_activate_path(user.id), :method => :post, :confirm => "Are you sure?",
+         :title => "Activate #{user.name}" %> </td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+<% end %>

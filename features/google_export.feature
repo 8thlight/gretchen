@@ -9,3 +9,4 @@ I want to have vacation days synch with the 8th Light google calendar
     When I enter in a vacation day at "11/11/2012" for "John Lennon"
     And I go to the calendar
     Then the date "11/11/2012" should be a vacation of "John Lennon"
+

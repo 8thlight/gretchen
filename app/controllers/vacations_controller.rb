@@ -13,21 +13,10 @@ class VacationsController < ApplicationController
   end
 
   def destroy
-    Vacation.find_by_id(params[:id]).destroy
+    vacation = Vacation.find_by_id(params[:id])
+    user = current_user
+    VacationDay.new(user, vacation, google_com(user)).delete_vacation
     redirect_to "/users/#{current_user.id}"
   end
 
-
-  def google_com(user)
-    if(ENV['RAILS_ENV'] == 'test')
-      GoogleMock.new(user, ENV['TEST_KEY'], ENV['TEST_SECRET'])
-    else
-      if user.email == "san.y4ku@gmail.com"
-        calendarId = 'primary'
-      else
-        calendarId = '8thlight.com_4uqqu52baa6k0qeb0dp3gni138@group.calendar.google.com'
-      end
-        GoogleCalendar.new(user, ENV['TEST_KEY'], ENV['TEST_SECRET'], calendarId)
-    end
-  end
 end

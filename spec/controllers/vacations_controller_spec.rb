@@ -3,7 +3,7 @@ require 'spec_helper'
 describe VacationsController do
   before(:each) do
     @boss = User.create!(:name => "A guy", :email => "guy@8thlight.com", :vacationdays => 10, :uid => "123456", :provider => "google_oauth2")
-    @vacation = {:start_date => "25/12/2011", :end_date => "27/12/2011"}
+    @vacation = {:start_date => "25/12/2011", :end_date => "27/12/2011", :google_id => "abunchof12384andletters"}
     session[:user_id] = @boss.id
   end
 

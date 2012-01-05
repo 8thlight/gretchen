@@ -8,7 +8,6 @@ Given /I am logged in as an admin/ do
     "uid"=>"http://xxxx.com/openid?id=118181138998978630963",
     "info"=>{"email"=>"admin@8thlight.com", "first_name"=>"admin", "last_name"=>"", "name"=>"admin"},
     "credentials"=>{"token"=>"tookkeeeennnnn"}
-
   }
   click_link "Sign in with Google"
 end
@@ -32,7 +31,7 @@ end
 
 
 And /I update any name, email, and number of vacation days/ do
-  fill_in("Vacationdays", :with =>"20")
+  fill_in("user_vacationdays", :with =>"20")
   click_button("Update")
 end
 

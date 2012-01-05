@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Vacation Days Remaining</th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @users.each do |user| %>
+  <% if !user.deleted %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.vacationdays - user.days_used %></td>
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <% if current_user.admin? %>
+        <td> <%= button_to "Delete", user, :method => :delete, :confirm => "Are you sure?", :id => "#{user.name}" %> </td>
+      <% end %>
+    </tr>
+  <% end %>
+<% end %>
+</table>
