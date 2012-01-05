@@ -21,7 +21,6 @@ class GoogleCalendar
   end
 
   def add_vacation(summary, start_date, end_date)
-    fetch_new_token
     event = {
       'summary' => "#{summary}",
       'start' => {
@@ -39,7 +38,6 @@ class GoogleCalendar
   end
   
   def get_single_event(id)
-    fetch_new_token
     result = @client.execute(:api_method => @service.events.get,
                              :parameters => {'calendarId' => @calendarId, 'eventId' => id})
     result
@@ -47,7 +45,6 @@ class GoogleCalendar
   end
 
   def delete_event(id)
-    fetch_new_token
     result = @client.execute(:api_method => @service.events.delete,
                              :parameters => {'calendarId' => @calendarId, 'eventId' => id})
   end
