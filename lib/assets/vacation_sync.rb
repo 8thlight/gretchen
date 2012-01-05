@@ -12,8 +12,4 @@ class VacationSync
       vacation.destroy if result.status == 400 || result.data.status == 'cancelled'
     end
   end
-
-  def delete_date(id)
-    result = @google_cal.delete_event(id)
-  end
 end

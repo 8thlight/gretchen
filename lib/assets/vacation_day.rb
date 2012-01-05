@@ -1,5 +1,3 @@
-require 'assets/vacation_sync'
-
 class VacationDay
 
   attr_accessor :dates, :google_cal
@@ -48,7 +46,7 @@ class VacationDay
     length = @user.days_used - (@vacation.end_date - @vacation.start_date).to_i
     @user.update_attribute(:days_used, length)
     @vacation.destroy
-    VacationSync.new(@user, @google_cal).delete_date(@vacation.google_id)
+    @google_cal.delete_event(@vacation.google_id)
   end
 
 end

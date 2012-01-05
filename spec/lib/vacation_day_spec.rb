@@ -85,4 +85,8 @@ describe VacationDay do
     @test.days_used.should == 0
   end
 
+  it "should not delete if the vacation day has passed" do
+    
+  end
+
 end

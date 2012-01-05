@@ -26,11 +26,4 @@ describe VacationDay do
     @sync.check_dates
     @test.vacations.count.should == 2
   end
-
-  it "should delete a date successfully" do
-    @test.vacations.last.update_attribute(:google_id, "123deleteme")
-    @google_mock.add_array_of_test_vacations(@test.vacations)
-    @sync.delete_date(@test.vacations.last.google_id)
-    @google_mock.id_array.count.should == 2
-  end
 end
