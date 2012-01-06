@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Gretchen</title>
-  <%= javascript_include_tag "application" %>
-  <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" %>
-  <%= csrf_meta_tags %>
-</head>
+  <head>
+    <title>Gretchen</title>
+    <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <div id="header">
+    <div id="usersignin">
+      <% if current_user %> 
+        Welcome <%= current_user.name %>
+        <%= link_to "Sign Out", signout_path %>
+      <% else %>
+        <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
+      <% end%>
+    </div>
+
+    <div id="navigation">
+      <% if !current_user.nil? %>
+        <%= link_to "Calendar", "/calendar" %>
+
+        <%= link_to "Vacation Time", "/users/#{current_user.id}" %>
+      <% end %>
+
+      <% if !current_user.nil? && current_user.admin? %>
+        <%= link_to "Administration", "/users" %>
+      <% end %>
+    </div>
+
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="<%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+  </div>
+
+
 <body>
-
-  <% if current_user %> 
-  Welcome <%= current_user.name %>
-    <%= link_to "Sign Out", signout_path %>
-  <% else %>
-    <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
-  <% end%>
-
-  <% if !current_user.nil? %>
-  <%= link_to "Calendar", "/calendar" %>
-
-  <%= link_to "Vacation Time", "/users/#{current_user.id}" %>
-  <% end %>
-
-  <% if !current_user.nil? && current_user.admin? %>
-    <%= link_to "Administration", "/users" %>
-  <% end %>
-
-  <% flash.each do |key, value| %>
-    <div class="<%= key %>"><%= value %></div>
-  <% end %>
 
   <%= yield %>
 
 </body>
+
 </html>

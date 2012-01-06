@@ -39,6 +39,8 @@ describe VacationsController do
 
   it "should delete vacations" do
     bye = Vacation.create(@vacation)
+    @time = Time.parse("Dec 25 2011")
+    Time.stub!(:now).and_return(@time)
     lambda do
       delete :destroy, :id => bye
     end.should change(Vacation, :count).by(-1)

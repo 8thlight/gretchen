@@ -1,1 +1,17 @@
-<h1>8th Light Calendar Login</h1>
+<head>
+  <% if current_user.nil? %>
+    <meta http-equiv="Refresh" content="5;url=/auth/google_oauth2" />
+  <% else %>
+    <meta http-equiv="Refresh" content="5;url=/calendar" />
+  <% end %>
+</head>
+<body>
+  <div id="redirect_notice">
+    <h3>
+      Welcome to Gretchen! Redirecting you to Sign in with Google!
+      <br/>
+      If you were not redirected automatically, please click
+      <%= link_to "Sign in with Google", "/auth/google_oauth2" %> here
+    </h3>
+   </div>
+</body>

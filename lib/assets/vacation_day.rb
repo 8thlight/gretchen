@@ -43,10 +43,12 @@ class VacationDay
   end
   
   def delete_vacation
-    length = @user.days_used - (@vacation.end_date - @vacation.start_date).to_i
-    @user.update_attribute(:days_used, length)
-    @vacation.destroy
-    @google_cal.delete_event(@vacation.google_id)
+    if Time.now.to_date <= @vacation.start_date
+      length = @user.days_used - (@vacation.end_date - @vacation.start_date).to_i
+      @user.update_attribute(:days_used, length)
+      @vacation.destroy
+      @google_cal.delete_event(@vacation.google_id)
+    end
   end
 
 end

@@ -13,7 +13,7 @@ describe UsersController do
     it "should be successful if admin" do
       session[:user_id] = @boss.id
       get :index
-      response.should have_selector('h1', :content => "Listing users")
+      response.should have_selector('h2', :content => "Listing users")
     end
 
     it "should redirect to root if not admin" do

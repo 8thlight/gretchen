@@ -7,6 +7,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2', :git => 'git://github.com/zquestz/omniauth-google-oauth2.git'
 gem "google-api-client", "~> 0.3.0"
 gem 'mail'
+gem 'simple_form'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.7.0"

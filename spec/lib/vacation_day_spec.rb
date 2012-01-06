@@ -72,6 +72,8 @@ describe VacationDay do
     date.save
     vacation = @test.vacations.last
     count = @test.vacations.count
+    @time = Time.parse("Dec 21 2011")
+    Time.stub!(:now).and_return(@time)
     VacationDay.new(@test, vacation, @google_mock).delete_vacation
     @test.vacations.count.should == (count-1)
   end
@@ -81,12 +83,21 @@ describe VacationDay do
     date.save
     vacation = @test.vacations.last
     length = (vacation.end_date - vacation.start_date).to_i
+    @time = Time.parse("Dec 21 2011")
+    Time.stub!(:now).and_return(@time)
     VacationDay.new(@test, vacation, @google_mock).delete_vacation
     @test.days_used.should == 0
   end
 
   it "should not delete if the vacation day has passed" do
-    
+    date = VacationDay.new(@test, @vacation, @google_mock)
+    date.save
+    vacation = @test.vacations.last
+    count = @test.vacations.count
+    @time = Time.parse("Dec 25 2011")
+    Time.stub!(:now).and_return(@time)
+    VacationDay.new(@test, vacation, @google_mock).delete_vacation
+    count.should == @test.vacations.count
   end
 
 end

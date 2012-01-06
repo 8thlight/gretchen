@@ -9,4 +9,15 @@ Scenario: I want to enter a vacation day
     When I fill in "Start date" with "11/11/2012"
     And I fill in "End date" with "11/11/2012"
     When I press "Submit"
-    Then the vacation entry on the date "11/11/2012" for "John Lennon vacation" is persisted.
+    Then the vacation entry on the date "11/11/2012" for "John Lennon" is persisted.
+
+  @omniauth_test
+  Scenario: I can't delete a vacation after it's start date
+    Given I am a craftsman logged in as "John Lennon"
+    #And I have an existing vacation period that started yesterday
+    And I click "Vacation Time"
+    And I fill in "Start date" and "End date" with earlier dates
+    When I press "Submit"
+    Then show me the page
+    And I click delete on that vacation period
+    Then the vacation period should still exist
