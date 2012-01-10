@@ -14,10 +14,8 @@ Scenario: I want to enter a vacation day
   @omniauth_test
   Scenario: I can't delete a vacation after it's start date
     Given I am a craftsman logged in as "John Lennon"
-    #And I have an existing vacation period that started yesterday
     And I click "Vacation Time"
     And I fill in "Start date" and "End date" with earlier dates
     When I press "Submit"
-    Then show me the page
     And I click delete on that vacation period
     Then the vacation period should still exist
